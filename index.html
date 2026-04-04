@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patvizry Services  -  Patent & Trademark Consulting</title>
+    <title>Patvizry Services - Patent &amp; Trademark Consulting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
-        /* ─── CSS Variables ─────────────────────────────── */
         :root {
             --navy:      #0C1220;
             --navy-mid:  #162035;
@@ -17,807 +16,189 @@
             --gold:      #C9A84C;
             --parchment: #F7F4EF;
             --white:     #FFFFFF;
-            --off-white: #F4F1EC;
             --charcoal:  #1E2A3A;
             --text-dark: #1a2332;
             --text-mid:  #4a5568;
             --text-light:#8a9ab0;
-            --border:    rgba(201,168,76,0.25);
         }
 
-        /* ─── Reset & Base ──────────────────────────────── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 300;
-            color: var(--text-dark);
-            background: var(--parchment);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            line-height: 1.15;
-        }
-
+        body { font-family: 'DM Sans', sans-serif; font-weight: 300; color: var(--text-dark); background: var(--parchment); overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; line-height: 1.15; }
         p { line-height: 1.8; }
-
         a { text-decoration: none; color: inherit; }
 
-        /* ─── Utility ───────────────────────────────────── */
-        .section-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 100px 40px;
-        }
+        .section-container { max-width: 1100px; margin: 0 auto; padding: 100px 40px; }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--text-dark); margin-bottom: 16px; position: relative; display: inline-block; }
+        .section-title::after { content: ''; display: block; width: 48px; height: 2px; background: var(--gold); margin-top: 14px; }
+        .section-title.centered { display: block; text-align: center; }
+        .section-title.centered::after { margin: 14px auto 0; }
 
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--text-dark);
-            margin-bottom: 16px;
-            position: relative;
-            display: inline-block;
-        }
+        .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 48px;
-            height: 2px;
-            background: var(--gold);
-            margin-top: 14px;
-        }
-
-        .section-title.centered {
-            display: block;
-            text-align: center;
-        }
-
-        .section-title.centered::after {
-            margin: 14px auto 0;
-        }
-
-        /* ─── Fade-in Animation ─────────────────────────── */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ─── NAVIGATION ────────────────────────────────── */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            transition: background 0.3s, box-shadow 0.3s;
-            padding: 0;
-        }
-
-        .navbar.scrolled {
-            background: rgba(255,255,255,0.97);
-            backdrop-filter: blur(8px);
-            box-shadow: 0 1px 20px rgba(12,18,32,0.08);
-        }
-
-        .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 40px;
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-
-        .logo span.logo-main { color: var(--teal); }
-        .logo span.logo-sub  { color: var(--text-light); font-weight: 400; font-size: 1.1rem; margin-left: 4px; }
-
-        .navbar:not(.scrolled) .logo span.logo-main { color: #6ee7de; }
-        .navbar:not(.scrolled) .logo span.logo-sub  { color: rgba(255,255,255,0.5); }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 36px;
-        }
-
-        .nav-links a {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 400;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.75);
-            transition: color 0.2s;
-            position: relative;
-            padding-bottom: 3px;
-        }
-
+        /* TOP NAV */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: background 0.3s, box-shadow 0.3s; }
+        .navbar.scrolled { background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); box-shadow: 0 1px 20px rgba(12,18,32,0.08); }
+        .nav-container { max-width: 1100px; margin: 0 auto; padding: 0 40px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; }
+        .logo .logo-main { color: #6ee7de; }
+        .logo .logo-sub { color: rgba(255,255,255,0.4); font-weight: 400; font-size: 1.1rem; margin-left: 4px; }
+        .navbar.scrolled .logo .logo-main { color: var(--teal); }
+        .navbar.scrolled .logo .logo-sub { color: var(--text-light); }
+        .nav-links { list-style: none; display: flex; gap: 36px; }
+        .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(255,255,255,0.6); transition: color 0.2s; position: relative; padding-bottom: 3px; }
         .navbar.scrolled .nav-links a { color: var(--text-mid); }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--teal);
-            transition: width 0.25s;
-        }
-
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--teal); transition: width 0.25s; }
         .nav-links a:hover::after { width: 100%; }
-        .nav-links a:hover { color: var(--teal); }
-        .navbar:not(.scrolled) .nav-links a:hover { color: white; }
+        .nav-links a:hover { color: white; }
+        .navbar.scrolled .nav-links a:hover { color: var(--teal); }
 
-        /* Hamburger */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 4px;
-        }
+        /* MOBILE BOTTOM NAV */
+        .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.98); backdrop-filter: blur(12px); border-top: 1px solid rgba(0,0,0,0.08); padding-bottom: env(safe-area-inset-bottom, 0px); }
+        .bottom-nav-inner { display: flex; justify-content: space-around; align-items: stretch; height: 60px; }
+        .bottom-nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; flex: 1; cursor: pointer; color: var(--text-light); transition: color 0.2s; border: none; background: none; padding: 6px 2px; -webkit-tap-highlight-color: transparent; }
+        .bottom-nav-item.active { color: var(--teal); }
+        .bottom-nav-item svg { width: 19px; height: 19px; stroke-width: 1.5; }
+        .bottom-nav-item span { font-size: 0.58rem; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 400; }
 
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: white;
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        .navbar.scrolled .hamburger span { background: var(--text-dark); }
-
-        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 72px;
-            left: 0;
-            right: 0;
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(12px);
-            padding: 24px 40px 32px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-            z-index: 999;
-        }
-
-        .mobile-menu.open { display: block; }
-
-        .mobile-menu a {
-            display: block;
-            font-size: 1.1rem;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            color: var(--text-dark);
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-        }
-
-        .mobile-menu a:last-child { border-bottom: none; }
-
-        /* ─── HERO ──────────────────────────────────────── */
-        .hero {
-            min-height: 100vh;
-            background: var(--navy);
-            background-image:
-                radial-gradient(ellipse at 20% 50%, rgba(13,148,136,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 120px 40px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .hero-content {
-            max-width: 820px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-eyebrow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 36px;
-        }
-
-        .hero-eyebrow::before,
-        .hero-eyebrow::after {
-            content: '';
-            width: 60px;
-            height: 1px;
-            background: var(--gold);
-            opacity: 0.6;
-        }
-
-        .hero-eyebrow span {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gold);
-            font-weight: 400;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.6rem, 6vw, 5rem);
-            color: white;
-            font-weight: 600;
-            line-height: 1.1;
-            margin-bottom: 28px;
-            letter-spacing: -0.02em;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: rgba(255,255,255,0.75);
-        }
-
-        .hero-sub {
-            font-size: 1.05rem;
-            color: rgba(255,255,255,0.55);
-            max-width: 600px;
-            margin: 0 auto 48px;
-            font-weight: 300;
-            line-height: 1.8;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 32px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            cursor: pointer;
-            border: none;
-            border-radius: 2px;
-            transition: all 0.25s;
-        }
-
-        .btn-primary {
-            background: var(--teal);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--teal-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(13,148,136,0.35);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .btn-secondary:hover {
-            border-color: rgba(255,255,255,0.7);
-            background: rgba(255,255,255,0.06);
-        }
-
-        /* Value cards row */
-        .value-props {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            width: 100%;
-            max-width: 1100px;
-            margin-top: 80px;
-            position: relative;
-            z-index: 1;
-            background: rgba(255,255,255,0.06);
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .value-card {
-            padding: 40px 36px;
-            background: rgba(255,255,255,0.03);
-            transition: background 0.3s;
-        }
-
+        /* HERO */
+        .hero { min-height: 100vh; background: var(--navy); background-image: radial-gradient(ellipse at 20% 50%, rgba(13,148,136,0.12) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 50%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 40px 0; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .hero-content { max-width: 820px; text-align: center; position: relative; z-index: 1; }
+        .hero-eyebrow { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 36px; }
+        .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 60px; height: 1px; background: var(--gold); opacity: 0.6; }
+        .hero-eyebrow span { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+        .hero h1 { font-size: clamp(2.6rem, 6vw, 5rem); color: white; letter-spacing: -0.02em; margin-bottom: 28px; }
+        .hero h1 em { font-style: italic; color: rgba(255,255,255,0.7); }
+        .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.5); max-width: 600px; margin: 0 auto 48px; font-weight: 300; line-height: 1.8; }
+        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 14px 32px; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border: none; border-radius: 2px; transition: all 0.25s; }
+        .btn-primary { background: var(--teal); color: white; }
+        .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,148,136,0.35); }
+        .btn-secondary { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); }
+        .btn-secondary:hover { border-color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.05); }
+        .value-props { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; width: 100%; max-width: 1100px; margin-top: 80px; background: rgba(255,255,255,0.06); border-top: 1px solid rgba(255,255,255,0.07); position: relative; z-index: 1; }
+        .value-card { padding: 40px 36px; background: rgba(255,255,255,0.03); transition: background 0.3s; }
         .value-card:hover { background: rgba(255,255,255,0.06); }
-
-        .value-card-icon {
-            width: 32px;
-            height: 2px;
-            background: var(--gold);
-            margin-bottom: 20px;
-            transition: width 0.3s;
-        }
-
+        .value-card-icon { width: 32px; height: 2px; background: var(--gold); margin-bottom: 20px; transition: width 0.3s; }
         .value-card:hover .value-card-icon { width: 48px; }
+        .value-card h3 { font-size: 1.1rem; color: white; margin-bottom: 10px; }
+        .value-card p { font-size: 0.88rem; color: rgba(255,255,255,0.4); line-height: 1.7; }
 
-        .value-card h3 {
-            font-size: 1.15rem;
-            color: white;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .value-card p {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.45);
-            line-height: 1.7;
-        }
-
-        /* ─── ABOUT ─────────────────────────────────────── */
+        /* ABOUT */
         .about { background: var(--white); }
-
-        .about .section-container {
-            display: grid;
-            grid-template-columns: 1fr 1.6fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .about-left { padding-top: 8px; }
-
-        .about-left p {
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--teal);
-            margin-bottom: 24px;
-            font-weight: 400;
-        }
-
-        .about-right p {
-            font-size: 1rem;
-            color: var(--text-mid);
-            margin-bottom: 20px;
-        }
-
-        .guiding-principles {
-            margin-top: 36px;
-            padding: 32px;
-            background: var(--parchment);
-            border-left: 3px solid var(--gold);
-        }
-
-        .guiding-principles h3 {
-            font-size: 1rem;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-dark);
-            margin-bottom: 16px;
-            font-size: 0.8rem;
-        }
-
+        .about .section-container { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
+        .about-label { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 24px; font-weight: 400; }
+        .about-right p { font-size: 1rem; color: var(--text-mid); margin-bottom: 20px; }
+        .guiding-principles { margin-top: 36px; padding: 32px; background: var(--parchment); border-left: 3px solid var(--gold); }
+        .guiding-principles h3 { font-size: 0.75rem; font-family: 'DM Sans', sans-serif; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dark); margin-bottom: 16px; }
         .guiding-principles ul { list-style: none; }
-
-        .guiding-principles li {
-            font-size: 0.95rem;
-            color: var(--text-mid);
-            padding: 8px 0;
-            padding-left: 20px;
-            position: relative;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
+        .guiding-principles li { font-size: 0.93rem; color: var(--text-mid); padding: 9px 0 9px 20px; position: relative; border-bottom: 1px solid rgba(0,0,0,0.05); }
         .guiding-principles li:last-child { border-bottom: none; }
+        .guiding-principles li::before { content: '\2192'; position: absolute; left: 0; color: var(--teal); }
 
-        .guiding-principles li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--teal);
-            font-size: 0.85rem;
-        }
-
-        /* ─── SERVICES ──────────────────────────────────── */
+        /* SERVICES */
         .services { background: var(--parchment); }
-
-        .services .section-container { padding-bottom: 80px; }
-
-        .services-intro {
-            max-width: 580px;
-            margin-bottom: 64px;
-        }
-
-        .services-intro p {
-            color: var(--text-mid);
-            margin-top: 16px;
-        }
-
-        .service-columns {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        .service-column {
-            background: var(--white);
-            padding: 32px 28px;
-            border-radius: 2px;
-            border-top: 3px solid transparent;
-            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-        }
-
-        .service-column:hover {
-            border-top-color: var(--teal);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-            transform: translateY(-4px);
-        }
-
-        .service-column h3 {
-            font-size: 1.05rem;
-            color: var(--text-dark);
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid rgba(0,0,0,0.07);
-        }
-
+        .services-intro { max-width: 580px; margin-bottom: 56px; }
+        .services-intro p { color: var(--text-mid); margin-top: 14px; }
+        .service-columns { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .service-column { background: var(--white); padding: 28px 24px; border-radius: 2px; border-top: 3px solid transparent; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
+        .service-column:hover { border-top-color: var(--teal); box-shadow: 0 12px 40px rgba(0,0,0,0.08); transform: translateY(-4px); }
+        .service-column h3 { font-size: 1rem; color: var(--text-dark); margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(0,0,0,0.07); }
         .service-column ul { list-style: none; }
-
-        .service-column li {
-            font-size: 0.875rem;
-            color: var(--text-mid);
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-            line-height: 1.6;
-        }
-
+        .service-column li { font-size: 0.845rem; color: var(--text-mid); padding: 9px 0; border-bottom: 1px solid rgba(0,0,0,0.04); line-height: 1.55; }
         .service-column li:last-child { border-bottom: none; }
+        .service-column li strong { display: block; font-weight: 500; color: var(--text-dark); margin-bottom: 2px; font-size: 0.83rem; }
 
-        .service-column li strong {
-            display: block;
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 3px;
-            font-size: 0.85rem;
-        }
-
-        /* ─── EXPERTISE ─────────────────────────────────── */
+        /* EXPERTISE */
         .expertise { background: var(--navy); }
-
         .expertise .section-container { text-align: center; }
-
         .expertise .section-title { color: white; }
         .expertise .section-title::after { margin: 14px auto 0; }
+        .expertise-intro { color: rgba(255,255,255,0.45); max-width: 540px; margin: 18px auto 52px; font-size: 0.93rem; }
+        .expertise-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 36px; }
+        .expertise-tile { padding: 20px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-left: 2px solid var(--teal); font-size: 0.8rem; color: rgba(255,255,255,0.7); text-align: left; line-height: 1.4; transition: background 0.25s, border-left-color 0.25s, color 0.25s; }
+        .expertise-tile:hover { background: rgba(13,148,136,0.12); border-left-color: var(--gold); color: white; }
+        .expertise-closing { color: rgba(255,255,255,0.3); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; }
 
-        .expertise-intro {
-            color: rgba(255,255,255,0.5);
-            max-width: 560px;
-            margin: 20px auto 56px;
-            font-size: 0.95rem;
-        }
-
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-
-        .expertise-tile {
-            padding: 22px 16px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-left: 2px solid var(--teal);
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.75);
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 400;
-            text-align: left;
-            transition: background 0.25s, border-left-color 0.25s, color 0.25s;
-            line-height: 1.4;
-        }
-
-        .expertise-tile:hover {
-            background: rgba(13,148,136,0.12);
-            border-left-color: var(--gold);
-            color: white;
-        }
-
-        .expertise-closing {
-            color: rgba(255,255,255,0.35);
-            font-size: 0.85rem;
-            font-style: italic;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-        }
-
-        /* ─── INSIGHTS ──────────────────────────────────── */
+        /* INSIGHTS */
         .insights { background: var(--white); }
+        .insights-header { margin-bottom: 52px; }
+        .insights-intro { color: var(--text-mid); margin-top: 14px; max-width: 460px; }
+        .insights-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .insight-card { background: var(--parchment); padding: 32px 28px; border-radius: 2px; border-bottom: 2px solid transparent; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
+        .insight-card:hover { border-bottom-color: var(--gold); box-shadow: 0 12px 40px rgba(0,0,0,0.07); transform: translateY(-4px); }
+        .card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .card-category { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: white; background: var(--teal); padding: 3px 9px; border-radius: 2px; }
+        .card-date { font-size: 0.76rem; color: var(--text-light); }
+        .insight-card h3 { font-size: 1.15rem; color: var(--text-dark); margin-bottom: 16px; line-height: 1.35; }
+        .article-intro { font-size: 0.88rem; color: var(--text-mid); margin-bottom: 12px; line-height: 1.75; }
+        .article-point { font-size: 0.875rem; color: var(--text-mid); margin-bottom: 10px; line-height: 1.72; }
+        .article-point strong { font-weight: 500; color: var(--text-dark); }
+        .article-closing { font-size: 0.875rem; color: var(--teal); font-style: italic; margin-top: 14px; line-height: 1.7; }
 
-        .insights-header {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin-bottom: 56px;
-        }
-
-        .insights-intro {
-            color: var(--text-mid);
-            margin-top: 16px;
-            max-width: 480px;
-        }
-
-        .insights-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 28px;
-        }
-
-        .insight-card {
-            background: var(--parchment);
-            padding: 36px 32px;
-            border-radius: 2px;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .insight-card:hover {
-            border-bottom-color: var(--gold);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.07);
-            transform: translateY(-4px);
-        }
-
-        .card-meta {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .card-category {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: white;
-            background: var(--teal);
-            padding: 4px 10px;
-            border-radius: 2px;
-        }
-
-        .card-date {
-            font-size: 0.78rem;
-            color: var(--text-light);
-        }
-
-        .insight-card h3 {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            line-height: 1.35;
-        }
-
-        .insight-card p {
-            font-size: 0.875rem;
-            color: var(--text-mid);
-            margin-bottom: 12px;
-            line-height: 1.75;
-        }
-
-        .insight-card p:last-child { margin-bottom: 0; }
-
-        .insight-card em {
-            color: var(--teal);
-            font-style: normal;
-            font-weight: 400;
-        }
-
-        /* ─── CONTACT ───────────────────────────────────── */
+        /* CONTACT */
         .contact { background: var(--navy); }
-
         .contact .section-title { color: white; }
         .contact .section-title::after { background: var(--gold); }
-
-        .contact-intro {
-            color: rgba(255,255,255,0.5);
-            margin: 16px 0 56px;
-            max-width: 460px;
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 64px;
-            align-items: start;
-        }
-
-        .contact-form { display: flex; flex-direction: column; gap: 20px; }
-
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-
-        .form-group label {
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.45);
-            font-weight: 400;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
-            color: white;
-            padding: 13px 16px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 300;
-            border-radius: 2px;
-            outline: none;
-            transition: border-color 0.2s, background 0.2s;
-            -webkit-appearance: none;
-        }
-
+        .contact-intro { color: rgba(255,255,255,0.45); margin: 14px 0 52px; max-width: 440px; }
+        .contact-wrapper { display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: start; }
+        .contact-form { display: flex; flex-direction: column; gap: 18px; }
+        .form-group { display: flex; flex-direction: column; gap: 7px; }
+        .form-group label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+        .form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.11); color: white; padding: 12px 15px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; border-radius: 2px; outline: none; transition: border-color 0.2s, background 0.2s; -webkit-appearance: none; }
         .form-group select option { background: var(--navy-mid); color: white; }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--teal);
-            background: rgba(13,148,136,0.08);
-        }
-
-        .form-group textarea { resize: vertical; min-height: 130px; }
-
-        .contact-form .btn-primary {
-            align-self: flex-start;
-            margin-top: 8px;
-        }
-
-        .contact-info { padding-top: 8px; }
-
-        .info-block {
-            margin-bottom: 32px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid rgba(255,255,255,0.07);
-        }
-
-        .info-block:last-of-type { border-bottom: none; }
-
-        .info-block h4 {
-            font-size: 0.72rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 8px;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-        }
-
-        .info-block p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-        }
-
-        .info-block a {
-            color: rgba(255,255,255,0.7);
-            transition: color 0.2s;
-        }
-
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--teal); background: rgba(13,148,136,0.08); }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .contact-form .btn-primary { align-self: flex-start; margin-top: 6px; }
+        .info-block { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .info-block h4 { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 7px; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+        .info-block p { color: rgba(255,255,255,0.65); font-size: 0.93rem; }
+        .info-block a { color: rgba(255,255,255,0.65); transition: color 0.2s; }
         .info-block a:hover { color: var(--teal); }
+        .contact-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.28); margin-top: 28px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); line-height: 1.7; }
 
-        .contact-note {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.3);
-            font-style: italic;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-top: 32px;
-            padding-top: 32px;
-            border-top: 1px solid rgba(255,255,255,0.07);
-        }
+        /* FOOTER */
+        .footer { background: var(--charcoal); padding: 36px 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
+        .footer-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.98rem; color: rgba(255,255,255,0.28); margin-bottom: 18px; }
+        .copyright { font-size: 0.72rem; color: rgba(255,255,255,0.18); letter-spacing: 0.05em; }
 
-        /* ─── FOOTER ────────────────────────────────────── */
-        .footer {
-            background: var(--charcoal);
-            padding: 40px;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .footer-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 8px;
-        }
-
-        .footer-tagline {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1rem;
-            color: rgba(255,255,255,0.3);
-            margin-bottom: 20px;
-        }
-
-        .copyright {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.2);
-            letter-spacing: 0.06em;
-        }
-
-        /* ─── RESPONSIVE ────────────────────────────────── */
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
             .service-columns { grid-template-columns: repeat(2, 1fr); }
-            .expertise-grid  { grid-template-columns: repeat(3, 1fr); }
-            .about .section-container { grid-template-columns: 1fr; gap: 40px; }
+            .expertise-grid { grid-template-columns: repeat(3, 1fr); }
+            .about .section-container { grid-template-columns: 1fr; gap: 36px; }
         }
-
         @media (max-width: 768px) {
-            .section-container { padding: 70px 24px; }
+            .section-container { padding: 64px 20px; }
             .nav-links { display: none; }
-            .hamburger { display: flex; }
+            .bottom-nav { display: block; }
+            body { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
             .value-props { grid-template-columns: 1fr; }
             .service-columns { grid-template-columns: 1fr; }
             .insights-grid { grid-template-columns: 1fr; }
             .expertise-grid { grid-template-columns: repeat(2, 1fr); }
-            .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
-            .hero { padding: 100px 24px 0; }
-            .hero h1 { font-size: 2.4rem; }
+            .contact-wrapper { grid-template-columns: 1fr; gap: 36px; }
+            .hero { padding: 90px 20px 0; min-height: 100svh; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero-eyebrow::before, .hero-eyebrow::after { width: 30px; }
         }
-
         @media (max-width: 480px) {
-            .expertise-grid { grid-template-columns: 1fr; }
+            .expertise-grid { grid-template-columns: 1fr 1fr; }
+            .value-card { padding: 28px 24px; }
+            .insight-card { padding: 24px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ─── NAVIGATION ──────────────────────────────── -->
+    <!-- TOP NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <span class="logo-main">Patvizry</span>
-                <span class="logo-sub">Services</span>
-            </div>
+            <div class="logo"><span class="logo-main">Patvizry</span><span class="logo-sub">Services</span></div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -826,70 +207,73 @@
                 <li><a href="#insights">Insights</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
-                <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- MOBILE BOTTOM NAV -->
+    <nav class="bottom-nav" id="bottomNav">
+        <div class="bottom-nav-inner">
+            <button class="bottom-nav-item active" onclick="goTo('home')" data-section="home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+                <span>Home</span>
+            </button>
+            <button class="bottom-nav-item" onclick="goTo('about')" data-section="about">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                <span>About</span>
+            </button>
+            <button class="bottom-nav-item" onclick="goTo('services')" data-section="services">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                <span>Services</span>
+            </button>
+            <button class="bottom-nav-item" onclick="goTo('expertise')" data-section="expertise">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                <span>Domains</span>
+            </button>
+            <button class="bottom-nav-item" onclick="goTo('insights')" data-section="insights">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <span>Insights</span>
+            </button>
+            <button class="bottom-nav-item" onclick="goTo('contact')" data-section="contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span>Contact</span>
             </button>
         </div>
     </nav>
 
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#home"      onclick="closeMenu()">Home</a>
-        <a href="#about"     onclick="closeMenu()">About</a>
-        <a href="#services"  onclick="closeMenu()">Services</a>
-        <a href="#expertise" onclick="closeMenu()">Expertise</a>
-        <a href="#insights"  onclick="closeMenu()">Insights</a>
-        <a href="#contact"   onclick="closeMenu()">Contact</a>
-    </div>
-
-    <!-- ─── HERO ────────────────────────────────────── -->
+    <!-- HERO -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <div class="hero-eyebrow">
-                <span>Patent &amp; Trademark Consulting</span>
-            </div>
+            <div class="hero-eyebrow"><span>Patent &amp; Trademark Consulting</span></div>
             <h1>Your creation deserves<br><em>protection that holds.</em></h1>
-            <p class="hero-sub">We help inventors and companies protect patents, trademarks, and IP rights  -  clear process, global reach, 25+ years backing every filing.</p>
+            <p class="hero-sub">We help inventors and companies protect patents, trademarks, and IP rights - clear process, global reach, 25+ years backing every filing.</p>
             <div class="cta-buttons">
-                <button class="btn btn-primary"    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start a Conversation</button>
-                <button class="btn btn-secondary"  onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">View Services</button>
+                <button class="btn btn-primary"   onclick="goTo('contact')">Start a Conversation</button>
+                <button class="btn btn-secondary" onclick="goTo('services')">View Services</button>
             </div>
         </div>
-
         <div class="value-props">
-            <div class="value-card">
-                <div class="value-card-icon"></div>
-                <h3>Technical Depth</h3>
-                <p>Patent agents who understand your tech stack, from AI systems to quantum protocols</p>
-            </div>
-            <div class="value-card">
-                <div class="value-card-icon"></div>
-                <h3>Global Filing Network</h3>
-                <p>Direct filing in India plus coordinated prosecution across major jurisdictions through vetted associates</p>
-            </div>
-            <div class="value-card">
-                <div class="value-card-icon"></div>
-                <h3>Battle-Tested Process</h3>
-                <p>Over two decades refining evaluation, drafting, and prosecution workflows</p>
-            </div>
+            <div class="value-card"><div class="value-card-icon"></div><h3>Technical Depth</h3><p>Patent agents who understand your tech stack, from AI systems to quantum protocols</p></div>
+            <div class="value-card"><div class="value-card-icon"></div><h3>Global Filing Network</h3><p>Direct filing in India plus coordinated prosecution across major jurisdictions through vetted associates</p></div>
+            <div class="value-card"><div class="value-card-icon"></div><h3>Battle-Tested Process</h3><p>Over two decades refining evaluation, drafting, and prosecution workflows</p></div>
         </div>
     </section>
 
-    <!-- ─── ABOUT ────────────────────────────────────── -->
+    <!-- ABOUT -->
     <section id="about" class="about">
         <div class="section-container">
             <div class="about-left fade-in">
-                <p>Who we are</p>
+                <p class="about-label">Who we are</p>
                 <h2 class="section-title">Built on<br>precision.</h2>
             </div>
             <div class="about-right fade-in">
                 <p>Patvizry Services is a patent and trademark consulting practice led by a team of Registered Indian Patent Agents and Trademark Agents with over 25 years of experience in intellectual property.</p>
-                <p>We work with inventors, startups, and R&amp;D teams who need someone who understands both the legal framework and the technical substance. Our evaluations go beyond patentability checklists  -  we assess commercial viability, claim strength, and prior art landscapes.</p>
-                <p>We've filed across jurisdictions and technology domains. Our network of foreign associates handles coordinated prosecution in the US, Europe, and Asia, managed by us to keep quality consistent.</p>
+                <p>We work with inventors, startups, and R&amp;D teams who need someone who understands both the legal framework and the technical substance. Our evaluations go beyond patentability checklists - we assess commercial viability, claim strength, and prior art landscapes.</p>
+                <p>We have filed across jurisdictions and technology domains. Our network of foreign associates handles coordinated prosecution in the US, Europe, and Asia, managed by us to keep quality consistent.</p>
                 <div class="guiding-principles">
                     <h3>What guides us</h3>
                     <ul>
                         <li>Precision in claim drafting</li>
-                        <li>Honest patentability assessments (we'll tell you if it's not worth filing)</li>
+                        <li>Honest patentability assessments (we will tell you if it is not worth filing)</li>
                         <li>Long-term IP strategy, not just one-off applications</li>
                     </ul>
                 </div>
@@ -897,57 +281,26 @@
         </div>
     </section>
 
-    <!-- ─── SERVICES ─────────────────────────────────── -->
+    <!-- SERVICES -->
     <section id="services" class="services">
         <div class="section-container">
             <div class="services-intro fade-in">
                 <h2 class="section-title">What We Do</h2>
-                <p>End-to-end IP services across patents, trademarks, and compliance  -  from first disclosure to global portfolio management.</p>
+                <p>End-to-end IP services across patents, trademarks, and compliance - from first disclosure to global portfolio management.</p>
             </div>
             <div class="service-columns">
-                <div class="service-column fade-in">
-                    <h3>Patent Services</h3>
-                    <ul>
-                        <li><strong>Patentability Evaluation</strong>Prior art search, novelty assessment, commercial viability analysis</li>
-                        <li><strong>Patent Drafting</strong>Claims and specifications written to withstand prosecution and litigation</li>
-                        <li><strong>Patent Filing &amp; Prosecution</strong>Direct filing in India, coordinated global filing through our associate network</li>
-                        <li><strong>Portfolio Strategy</strong>Multi-patent planning for product lines and technology roadmaps</li>
-                    </ul>
-                </div>
-                <div class="service-column fade-in">
-                    <h3>Trademark Services</h3>
-                    <ul>
-                        <li><strong>Trademark Search &amp; Clearance</strong>Comprehensive search and risk assessment</li>
-                        <li><strong>Application &amp; Filing</strong>Application drafting and filing across jurisdictions</li>
-                        <li><strong>Opposition &amp; Proceedings</strong>Opposition and cancellation proceedings</li>
-                        <li><strong>Portfolio Management</strong>Ongoing trademark portfolio maintenance</li>
-                    </ul>
-                </div>
-                <div class="service-column fade-in">
-                    <h3>IP Consulting</h3>
-                    <ul>
-                        <li><strong>Freedom-to-Operate Analysis</strong>Assess potential infringement risks before product launch</li>
-                        <li><strong>Licensing Strategy</strong>IP licensing and monetization planning</li>
-                        <li><strong>IP Due Diligence</strong>IP assessment for investments and acquisitions</li>
-                        <li><strong>Inventor Training</strong>Disclosure management and invention harvesting</li>
-                    </ul>
-                </div>
-                <div class="service-column fade-in">
-                    <h3>IP Compliance</h3>
-                    <ul>
-                        <li><strong>Foreign Filing Licence (FFL)</strong>Mandatory approval from the Controller of Patents under Section 39 before filing abroad</li>
-                        <li><strong>Patent Renewals</strong>Tracking and filing renewal fees across India and global jurisdictions</li>
-                        <li><strong>Working of Patents  -  Form 27</strong>Statements of working as required under Section 146 of the Patents Act</li>
-                    </ul>
-                </div>
+                <div class="service-column fade-in"><h3>Patent Services</h3><ul><li><strong>Patentability Evaluation</strong>Prior art search, novelty assessment, commercial viability analysis</li><li><strong>Patent Drafting</strong>Claims and specifications written to withstand prosecution and litigation</li><li><strong>Patent Filing &amp; Prosecution</strong>Direct filing in India, coordinated global filing through our associate network</li><li><strong>Portfolio Strategy</strong>Multi-patent planning for product lines and technology roadmaps</li></ul></div>
+                <div class="service-column fade-in"><h3>Trademark Services</h3><ul><li><strong>Trademark Search &amp; Clearance</strong>Comprehensive search and risk assessment</li><li><strong>Application &amp; Filing</strong>Application drafting and filing across jurisdictions</li><li><strong>Opposition &amp; Proceedings</strong>Opposition and cancellation proceedings</li><li><strong>Portfolio Management</strong>Ongoing trademark portfolio maintenance</li></ul></div>
+                <div class="service-column fade-in"><h3>IP Consulting</h3><ul><li><strong>Freedom-to-Operate Analysis</strong>Assess potential infringement risks before product launch</li><li><strong>Licensing Strategy</strong>IP licensing and monetization planning</li><li><strong>IP Due Diligence</strong>IP assessment for investments and acquisitions</li><li><strong>Inventor Training</strong>Disclosure management and invention harvesting</li></ul></div>
+                <div class="service-column fade-in"><h3>IP Compliance</h3><ul><li><strong>Foreign Filing Licence (FFL)</strong>Mandatory approval from the Controller of Patents under Section 39 before filing abroad</li><li><strong>Patent Renewals</strong>Tracking and filing renewal fees across India and global jurisdictions</li><li><strong>Working of Patents - Form 27</strong>Statements of working as required under Section 146 of the Patents Act</li></ul></div>
             </div>
         </div>
     </section>
 
-    <!-- ─── EXPERTISE ────────────────────────────────── -->
+    <!-- EXPERTISE -->
     <section id="expertise" class="expertise">
         <div class="section-container">
-            <h2 class="section-title fade-in">Technology Domains</h2>
+            <h2 class="section-title centered fade-in">Technology Domains</h2>
             <p class="expertise-intro fade-in">Patent quality depends on understanding the invention. We work across the technical areas that define modern innovation.</p>
             <div class="expertise-grid fade-in">
                 <div class="expertise-tile">Software &amp; Computer-Implemented Inventions</div>
@@ -961,176 +314,124 @@
                 <div class="expertise-tile">Space Technology</div>
                 <div class="expertise-tile">Energy &amp; Sustainability</div>
             </div>
-            <p class="expertise-closing fade-in">If your field isn't listed, reach out. Chances are we've worked in adjacent areas.</p>
+            <p class="expertise-closing fade-in">If your field is not listed, reach out. Chances are we have worked in adjacent areas.</p>
         </div>
     </section>
 
-    <!-- ─── INSIGHTS ─────────────────────────────────── -->
+    <!-- INSIGHTS -->
     <section id="insights" class="insights">
         <div class="section-container">
             <div class="insights-header fade-in">
                 <h2 class="section-title">Insights &amp; Updates</h2>
                 <p class="insights-intro">Practical notes on patent strategy, filing updates, and IP trends that matter to builders.</p>
             </div>
-            <div class="insights-grid">
-
-                <article class="insight-card fade-in">
-                    <div class="card-meta">
-                        <span class="card-category">Patent Strategy</span>
-                        <span class="card-date">January 2025</span>
-                    </div>
-                    <h3>When to file a provisional vs. complete specification in India</h3>
-                    <p>The choice between provisional and complete specifications isn't just about timeline  -  it's about strategic positioning.</p>
-                    <p><strong>Provisional specs work when:</strong> Your invention is evolving rapidly, you need priority date protection while refining claims, or you're testing market fit before full commitment.</p>
-                    <p><strong>Complete specs make sense when:</strong> Your invention is fully developed, claims are clear, and you want faster examination. You also skip the 12-month conversion deadline.</p>
-                    <p><strong>Common mistake:</strong> Filing provisionals that are too vague. A provisional must enable the invention  -  thin descriptions won't support strong claims later.</p>
-                    <p><strong>India-specific:</strong> Provisional specs don't undergo examination, but the complete spec must be filed within 12 months. Plan accordingly.</p>
-                    <p><em>The right choice depends on your development stage, budget, and competitive landscape.</em></p>
-                </article>
-
-                <article class="insight-card fade-in">
-                    <div class="card-meta">
-                        <span class="card-category">Filing Updates</span>
-                        <span class="card-date">April 2026</span>
-                    </div>
-                    <h3>Foreign Filing Licence in India  -  What Every Applicant Must Know</h3>
-                    <p>Before filing a patent application outside India for an invention developed in India, prior approval from the Indian Patent Office (Controller of Patents) is mandatory under Section 39 of the Patents Act.</p>
-                    <p><strong>Who needs it:</strong> Any person resident in India who wishes to file in a foreign jurisdiction for an invention conceived or developed in India, without first filing in India.</p>
-                    <p><strong>The alternative route:</strong> File first in India, wait six weeks. If no secrecy directions are issued, you may proceed with foreign filing  -  the Indian filing itself serves as deemed permission.</p>
-                    <p><strong>Express FFL timelines:</strong> Requests are typically decided within 21 days.</p>
-                    <p><strong>Penalty:</strong> Filing abroad without a required FFL can result in the Indian application being treated as abandoned.</p>
-                    <p><em>FFL compliance is assessed as part of our filing workflow at the point of invention disclosure.</em></p>
-                </article>
-
-                <article class="insight-card fade-in">
-                    <div class="card-meta">
-                        <span class="card-category">Filing Updates</span>
-                        <span class="card-date">April 2026</span>
-                    </div>
-                    <h3>Form 27  -  India's Patent Working Statement After the 2024 Amendments</h3>
-                    <p>Under Section 146(2) of the Indian Patents Act, every patent holder and licensee must file a statement of working of the patented invention in India using Form 27.</p>
-                    <p><strong>Key change  -  2024 Amendments:</strong> Filing frequency extended from annually to once every three financial years, commencing from the year after the patent is granted. Deadline is September 30 following the close of each three-year period.</p>
-                    <p><strong>Current deadline:</strong> For all patents granted on or before March 31, 2023, the filing window closes September 30, 2026. This is an active obligation right now.</p>
-                    <p><strong>What changed:</strong> Exact sales figures no longer required  -  approximate revenue is sufficient. A single Form 27 can cover multiple related patents granted to the same patentee.</p>
-                    <p><em>We track Form 27 deadlines as part of our portfolio maintenance - across three-year cycles, not as a last-minute reminder.</em></p>
-                </article>
-
-                <article class="insight-card fade-in">
-                    <div class="card-meta">
-                        <span class="card-category">Trademark</span>
-                        <span class="card-date">April 2026</span>
-                    </div>
-                    <h3>Trademark Filing in India and Abroad - A Practical Starting Point</h3>
-                    <p>A trademark protects what makes your brand recognisable - a name, a logo, a tagline, or a combination. Unlike a patent, which protects how something works, a trademark protects how something is identified in the market. Registration is not mandatory in India, but an unregistered mark offers significantly weaker legal protection and makes enforcement far more difficult.</p>
-                    <p><strong>Filing in India:</strong> Applications are filed with the Trade Marks Registry under the CGPDTM. India follows the Nice Classification system - goods and services are divided into 45 classes, and you file separately for each class relevant to your business. Getting the class selection right matters: filing in the wrong class leaves gaps that competitors can exploit. The process moves through examination, publication in the Trade Marks Journal, and a four-month opposition window before registration is granted. Expect 18 to 36 months, though expedited examination is available.</p>
-                    <p><strong>Filing Abroad:</strong> The Madrid Protocol allows a single international application through WIPO, designating multiple member countries at once - cost-effective when covering several jurisdictions. Direct national filing through local agents remains better for jurisdictions with specific requirements or where prosecution strategy matters more than speed. Your Indian registration or application serves as the base for a Madrid filing.</p>
-                    <p><strong>Before you file:</strong> A trademark search is not optional. Filing without a clearance search risks rejection on grounds of similarity to an existing mark, or a costly opposition after publication. A proper search covers identical and phonetically or visually similar marks across relevant classes.</p>
-                    <p><em>We conduct trademark searches and manage filings across India and international jurisdictions. If you are building a brand, get the search done before the name is announced publicly.</em></p>
-                </article>
-
-            </div>
+            <div class="insights-grid" id="insightsGrid"></div>
         </div>
     </section>
 
-    <!-- ─── CONTACT ───────────────────────────────────── -->
+    <!-- CONTACT -->
     <section id="contact" class="contact">
         <div class="section-container">
             <h2 class="section-title fade-in">Get in Touch</h2>
-            <p class="contact-intro fade-in">Whether you're evaluating a new invention, planning a filing strategy, or need portfolio guidance, let's talk.</p>
+            <p class="contact-intro fade-in">Whether you are evaluating a new invention, planning a filing strategy, or need portfolio guidance, let us talk.</p>
             <div class="contact-wrapper">
                 <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name">Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company / Organization</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject *</label>
-                        <select id="subject" name="subject" required>
+                    <div class="form-group"><label>Name *</label><input type="text" id="name" required></div>
+                    <div class="form-group"><label>Email *</label><input type="email" id="email" required></div>
+                    <div class="form-group"><label>Company / Organization</label><input type="text" id="company"></div>
+                    <div class="form-group"><label>Subject *</label>
+                        <select id="subject" required>
                             <option value="">Select a subject</option>
-                            <option value="Patent Inquiry">Patent Inquiry</option>
-                            <option value="Trademark Inquiry">Trademark Inquiry</option>
-                            <option value="IP Compliance">IP Compliance</option>
-                            <option value="General Consultation">General Consultation</option>
-                            <option value="Other">Other</option>
+                            <option>Patent Inquiry</option><option>Trademark Inquiry</option>
+                            <option>IP Compliance</option><option>General Consultation</option><option>Other</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
+                    <div class="form-group"><label>Message *</label><textarea id="message" rows="5" required></textarea></div>
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
-
                 <div class="contact-info fade-in">
-                    <div class="info-block">
-                        <h4>Email</h4>
-                        <p><a href="mailto:contact@patvizry.com">contact@patvizry.com</a></p>
-                    </div>
-                    <div class="info-block">
-                        <h4>Location</h4>
-                        <p>Bengaluru, India<br><span style="color:rgba(255,255,255,0.35);font-size:0.85rem;">with global filing network</span></p>
-                    </div>
-                    <p class="contact-note">Initial consultations are focused on understanding your needs. We'll tell you upfront if we're the right fit.</p>
+                    <div class="info-block"><h4>Email</h4><p><a href="mailto:contact@patvizry.com">contact@patvizry.com</a></p></div>
+                    <div class="info-block"><h4>Location</h4><p>Bengaluru, India<br><span style="color:rgba(255,255,255,0.32);font-size:0.83rem;">with global filing network</span></p></div>
+                    <p class="contact-note">Initial consultations are focused on understanding your needs. We will tell you upfront if we are the right fit.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ─── FOOTER ────────────────────────────────────── -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-logo">Patvizry Services</div>
         <p class="footer-tagline">Patent and trademark consulting for those who create.</p>
-        <p class="copyright">© 2026 Patvizry Services. All rights reserved.</p>
+        <p class="copyright">2026 Patvizry Services. All rights reserved.</p>
     </footer>
 
+    <script src="articles.js"></script>
     <script>
-        /* ── Navbar scroll ── */
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 40);
-        });
-
-        /* ── Hamburger ── */
-        function toggleMenu() {
-            document.getElementById('hamburger').classList.toggle('open');
-            document.getElementById('mobileMenu').classList.toggle('open');
-        }
-        function closeMenu() {
-            document.getElementById('hamburger').classList.remove('open');
-            document.getElementById('mobileMenu').classList.remove('open');
-        }
-
-        /* ── Fade-in on scroll ── */
+        /* ── Render articles ── */
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
-                    observer.unobserve(entry.target);
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    setTimeout(() => e.target.classList.add('visible'), i * 80);
+                    observer.unobserve(e.target);
                 }
             });
-        }, { threshold: 0.12 });
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        function renderArticles() {
+            const grid = document.getElementById('insightsGrid');
+            if (!grid || typeof ARTICLES === 'undefined') return;
+            grid.innerHTML = ARTICLES.map(a => `
+                <article class="insight-card fade-in">
+                    <div class="card-meta">
+                        <span class="card-category">${a.category}</span>
+                        <span class="card-date">${a.date}</span>
+                    </div>
+                    <h3>${a.title}</h3>
+                    ${a.intro ? `<p class="article-intro">${a.intro}</p>` : ''}
+                    ${(a.points||[]).map(pt => `<p class="article-point"><strong>${pt.label}:</strong> ${pt.text}</p>`).join('')}
+                    ${a.closing ? `<p class="article-closing">${a.closing}</p>` : ''}
+                </article>`).join('');
+            grid.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        }
+
+        /* ── Scroll helpers ── */
+        function goTo(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /* ── Navbar + bottom nav state ── */
+        const navbar = document.getElementById('navbar');
+        const sections = ['home','about','services','expertise','insights','contact'];
+
+        function updateNav() {
+            navbar.classList.toggle('scrolled', window.scrollY > 40);
+            let current = 'home';
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && window.scrollY >= el.offsetTop - 140) current = id;
+            });
+            document.querySelectorAll('.bottom-nav-item').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.section === current);
+            });
+        }
+
+        window.addEventListener('scroll', updateNav, { passive: true });
 
         /* ── Contact form ── */
-        function handleSubmit(event) {
-            event.preventDefault();
-            const name    = document.getElementById('name').value;
-            const email   = document.getElementById('email').value;
-            const company = document.getElementById('company').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            const mailto  = `mailto:contact@patvizry.com?subject=${encodeURIComponent(subject + '  -  Inquiry from ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nCompany: ' + company + '\n\nMessage:\n' + message)}`;
-            window.location.href = mailto;
+        function handleSubmit(e) {
+            e.preventDefault();
+            const n = document.getElementById('name').value;
+            const em = document.getElementById('email').value;
+            const co = document.getElementById('company').value;
+            const su = document.getElementById('subject').value;
+            const me = document.getElementById('message').value;
+            window.location.href = `mailto:contact@patvizry.com?subject=${encodeURIComponent(su + ' - Inquiry from ' + n)}&body=${encodeURIComponent('Name: ' + n + '\nEmail: ' + em + '\nCompany: ' + co + '\n\nMessage:\n' + me)}`;
         }
+
+        /* ── Init ── */
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        renderArticles();
+        updateNav();
     </script>
 </body>
 </html>
