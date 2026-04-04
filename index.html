@@ -170,7 +170,7 @@
         .info-block a { color: rgba(255,255,255,0.65); transition: color 0.2s; }
         .info-block a:hover { color: var(--teal); }
         .contact-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.28); margin-top: 28px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); line-height: 1.7; }
-
+        .contact-direct { max-width: 480px; }
         /* FOOTER */
         .footer { background: var(--charcoal); padding: 36px 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
@@ -203,6 +203,7 @@
             .value-card { padding: 28px 24px; }
         }
     </style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230C1220'/><text y='.9em' font-size='72' font-family='Georgia,serif' font-weight='bold' fill='%230D9488' x='50%25' text-anchor='middle'>P</text></svg>">
 </head>
 <body>
 
@@ -361,34 +362,18 @@
 
     <!-- CONTACT -->
     <section id="contact" class="contact">
-        <div class="section-container">
-            <h2 class="section-title fade-in">Get in Touch</h2>
-            <p class="contact-intro fade-in">Whether you are evaluating a new invention, planning a filing strategy, or need portfolio guidance, let us talk.</p>
-            <div class="contact-wrapper">
-                <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
-                    <div class="form-group"><label>Name *</label><input type="text" id="name" required></div>
-                    <div class="form-group"><label>Email *</label><input type="email" id="email" required></div>
-                    <div class="form-group"><label>Company / Organization</label><input type="text" id="company"></div>
-                    <div class="form-group"><label>Subject *</label>
-                        <select id="subject" required>
-                            <option value="">Select a subject</option>
-                            <option>Patent Inquiry</option>
-                            <option>Trademark Inquiry</option>
-                            <option>IP Compliance</option>
-                            <option>General Consultation</option>
-                            <option>Other</option>
-                        </select>
+<div class="contact-direct fade-in">
+                    <div class="info-block">
+                        <h4>Email</h4>
+                        <p><a href="mailto:contact@patvizry.com">contact@patvizry.com</a></p>
                     </div>
-                    <div class="form-group"><label>Message *</label><textarea id="message" rows="5" required></textarea></div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-                <div class="contact-info fade-in">
-                    <div class="info-block"><h4>Email</h4><p><a href="mailto:contact@patvizry.com">contact@patvizry.com</a></p></div>
-                    <div class="info-block"><h4>Location</h4><p>Bengaluru, India<br><span style="color:rgba(255,255,255,0.32);font-size:0.83rem;">with global filing network</span></p></div>
+                    <div class="info-block">
+                        <h4>Location</h4>
+                        <p>Bengaluru, India</p>
+                        <p style="color:rgba(255,255,255,0.32);font-size:0.83rem;margin-top:4px;">with global filing network</p>
+                    </div>
                     <p class="contact-note">Initial consultations are focused on understanding your needs. We will tell you upfront if we are the right fit.</p>
                 </div>
-            </div>
-        </div>
     </section>
 
     <!-- FOOTER -->
@@ -470,7 +455,7 @@
         window.addEventListener('scroll', updateNav, { passive: true });
 
         /* ── Contact form ── */
-        function handleSubmit(e) {
+     /*   function handleSubmit(e) {
             e.preventDefault();
             const n  = document.getElementById('name').value;
             const em = document.getElementById('email').value;
@@ -478,7 +463,7 @@
             const su = document.getElementById('subject').value;
             const me = document.getElementById('message').value;
             window.location.href = `mailto:contact@patvizry.com?subject=${encodeURIComponent(su + ' - Inquiry from ' + n)}&body=${encodeURIComponent('Name: ' + n + '\nEmail: ' + em + '\nCompany: ' + co + '\n\nMessage:\n' + me)}`;
-        }
+        } */
 
         /* ── Init ── */
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
