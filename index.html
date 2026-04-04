@@ -171,7 +171,12 @@
         .info-block a { color: rgba(255,255,255,0.65); transition: color 0.2s; }
         .info-block a:hover { color: var(--teal); }
         .contact-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.28); margin-top: 20px; line-height: 1.7; }
-        .contact-direct { max-width: 480px; }
+                .contact-direct { max-width: 480px; }
+        .contact-layout { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; align-items: center; }
+        .contact-divider { width: 1px; background: rgba(255,255,255,0.1); align-self: stretch; }
+        .contact-quote-main { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.45rem; color: rgba(255,255,255,0.7); line-height: 1.75; margin-bottom: 20px; }
+        .contact-quote-highlight { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.45rem; color: var(--teal); line-height: 1.75; }
+
         /* FOOTER */
         .footer { background: var(--charcoal); padding: 36px 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
@@ -185,6 +190,9 @@
             .about .section-container { grid-template-columns: 1fr; gap: 36px; }
         }
         @media (max-width: 768px) {
+            .contact-layout { grid-template-columns: 1fr; gap: 32px; }
+            .contact-divider { display: none; }
+            .contact-quote-main, .contact-quote-highlight { font-size: 1.2rem; }
             .section-container { padding: 64px 20px; }
             .nav-links { display: none; }
             .bottom-nav { display: block; }
@@ -366,8 +374,8 @@
         <div class="section-container">
             <h2 class="section-title fade-in">Get in Touch</h2>
             <p class="contact-intro fade-in">Whether you are evaluating a new invention, planning a filing strategy, or need portfolio guidance, let us talk.</p>
-            <div style="display:grid; grid-template-columns:1fr 1px 1fr; gap:48px; align-items:center;">
-                <div class="contact-direct fade-in">
+            <div class="contact-layout fade-in">
+                <div class="contact-direct">
                     <div class="info-block">
                         <h4>Email</h4>
                         <p><a href="mailto:contact@patvizry.com">contact@patvizry.com</a></p>
@@ -378,10 +386,10 @@
                         <p style="color:rgba(255,255,255,0.32);font-size:0.83rem;margin-top:4px;">with global filing network</p>
                     </div>
                 </div>
-                <div style="width:1px; background:rgba(255,255,255,0.1); align-self:stretch;"></div>
-                <div class="fade-in" style="padding-left:8px;">
-                    <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.45rem; color:rgba(255,255,255,0.7); line-height:1.75; margin-bottom:20px;">Initial consultations are focused on understanding your needs.</p>
-                    <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.45rem; color:var(--teal); line-height:1.75;">We will tell you upfront if we are the right fit.</p>
+                <div class="contact-divider"></div>
+                <div class="contact-quote">
+                    <p class="contact-quote-main">Initial consultations are focused on understanding your needs.</p>
+                    <p class="contact-quote-highlight">We will tell you upfront if we are the right fit.</p>
                 </div>
             </div>
         </div>
@@ -464,17 +472,6 @@
         }
 
         window.addEventListener('scroll', updateNav, { passive: true });
-
-        /* ── Contact form ── */
-     /*   function handleSubmit(e) {
-            e.preventDefault();
-            const n  = document.getElementById('name').value;
-            const em = document.getElementById('email').value;
-            const co = document.getElementById('company').value;
-            const su = document.getElementById('subject').value;
-            const me = document.getElementById('message').value;
-            window.location.href = `mailto:contact@patvizry.com?subject=${encodeURIComponent(su + ' - Inquiry from ' + n)}&body=${encodeURIComponent('Name: ' + n + '\nEmail: ' + em + '\nCompany: ' + co + '\n\nMessage:\n' + me)}`;
-        } */
 
         /* ── Init ── */
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
