@@ -34,7 +34,6 @@
         .section-title::after { content: ''; display: block; width: 48px; height: 2px; background: var(--gold); margin-top: 14px; }
         .section-title.centered { display: block; text-align: center; }
         .section-title.centered::after { margin: 14px auto 0; }
-
         .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
@@ -123,17 +122,29 @@
         .expertise-tile:hover { background: rgba(13,148,136,0.12); border-left-color: var(--gold); color: white; }
         .expertise-closing { color: rgba(255,255,255,0.3); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; }
 
-        /* INSIGHTS */
+        /* INSIGHTS - ACCORDION */
         .insights { background: var(--white); }
         .insights-header { margin-bottom: 52px; }
         .insights-intro { color: var(--text-mid); margin-top: 14px; max-width: 460px; }
-        .insights-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .insight-card { background: var(--parchment); padding: 32px 28px; border-radius: 2px; border-bottom: 2px solid transparent; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
-        .insight-card:hover { border-bottom-color: var(--gold); box-shadow: 0 12px 40px rgba(0,0,0,0.07); transform: translateY(-4px); }
-        .card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-        .card-category { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: white; background: var(--teal); padding: 3px 9px; border-radius: 2px; }
-        .card-date { font-size: 0.76rem; color: var(--text-light); }
-        .insight-card h3 { font-size: 1.15rem; color: var(--text-dark); margin-bottom: 16px; line-height: 1.35; }
+        .insights-grid { display: flex; flex-direction: column; gap: 12px; }
+
+        .insight-card { background: var(--parchment); border-radius: 2px; border-left: 3px solid transparent; transition: border-color 0.3s, box-shadow 0.3s; overflow: hidden; }
+        .insight-card.open { border-left-color: var(--teal); box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
+
+        .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 22px 28px; cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none; }
+        .card-header-left { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+        .card-meta { display: flex; align-items: center; gap: 10px; }
+        .card-category { font-size: 0.66rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: white; background: var(--teal); padding: 3px 9px; border-radius: 2px; }
+        .card-date { font-size: 0.75rem; color: var(--text-light); }
+        .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.12rem; font-weight: 600; color: var(--text-dark); line-height: 1.35; transition: color 0.2s; }
+        .card-header:hover .card-title { color: var(--teal); }
+        .card-chevron { flex-shrink: 0; width: 20px; height: 20px; margin-top: 4px; color: var(--text-light); transition: transform 0.3s, color 0.2s; }
+        .insight-card.open .card-chevron { transform: rotate(180deg); color: var(--teal); }
+
+        .card-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+        .insight-card.open .card-body { max-height: 2000px; }
+        .card-body-inner { padding: 0 28px 24px; }
+        .article-divider { height: 1px; background: rgba(0,0,0,0.08); margin-bottom: 20px; }
         .article-intro { font-size: 0.88rem; color: var(--text-mid); margin-bottom: 12px; line-height: 1.75; }
         .article-point { font-size: 0.875rem; color: var(--text-mid); margin-bottom: 10px; line-height: 1.72; }
         .article-point strong { font-weight: 500; color: var(--text-dark); }
@@ -179,17 +190,17 @@
             body { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
             .value-props { grid-template-columns: 1fr; }
             .service-columns { grid-template-columns: 1fr; }
-            .insights-grid { grid-template-columns: 1fr; }
             .expertise-grid { grid-template-columns: repeat(2, 1fr); }
             .contact-wrapper { grid-template-columns: 1fr; gap: 36px; }
             .hero { padding: 90px 20px 0; min-height: 100svh; }
             .hero h1 { font-size: 2.2rem; }
             .hero-eyebrow::before, .hero-eyebrow::after { width: 30px; }
+            .card-header { padding: 18px 20px; }
+            .card-body-inner { padding: 0 20px 20px; }
         }
         @media (max-width: 480px) {
             .expertise-grid { grid-template-columns: 1fr 1fr; }
             .value-card { padding: 28px 24px; }
-            .insight-card { padding: 24px 20px; }
         }
     </style>
 </head>
@@ -289,10 +300,29 @@
                 <p>End-to-end IP services across patents, trademarks, and compliance - from first disclosure to global portfolio management.</p>
             </div>
             <div class="service-columns">
-                <div class="service-column fade-in"><h3>Patent Services</h3><ul><li><strong>Patentability Evaluation</strong>Prior art search, novelty assessment, commercial viability analysis</li><li><strong>Patent Drafting</strong>Claims and specifications written to withstand prosecution and litigation</li><li><strong>Patent Filing &amp; Prosecution</strong>Direct filing in India, coordinated global filing through our associate network</li><li><strong>Portfolio Strategy</strong>Multi-patent planning for product lines and technology roadmaps</li></ul></div>
-                <div class="service-column fade-in"><h3>Trademark Services</h3><ul><li><strong>Trademark Search &amp; Clearance</strong>Comprehensive search and risk assessment</li><li><strong>Application &amp; Filing</strong>Application drafting and filing across jurisdictions</li><li><strong>Opposition &amp; Proceedings</strong>Opposition and cancellation proceedings</li><li><strong>Portfolio Management</strong>Ongoing trademark portfolio maintenance</li></ul></div>
-                <div class="service-column fade-in"><h3>IP Consulting</h3><ul><li><strong>Freedom-to-Operate Analysis</strong>Assess potential infringement risks before product launch</li><li><strong>Licensing Strategy</strong>IP licensing and monetization planning</li><li><strong>IP Due Diligence</strong>IP assessment for investments and acquisitions</li><li><strong>Inventor Training</strong>Disclosure management and invention harvesting</li></ul></div>
-                <div class="service-column fade-in"><h3>IP Compliance</h3><ul><li><strong>Foreign Filing Licence (FFL)</strong>Mandatory approval from the Controller of Patents under Section 39 before filing abroad</li><li><strong>Patent Renewals</strong>Tracking and filing renewal fees across India and global jurisdictions</li><li><strong>Working of Patents - Form 27</strong>Statements of working as required under Section 146 of the Patents Act</li></ul></div>
+                <div class="service-column fade-in"><h3>Patent Services</h3><ul>
+                    <li><strong>Patentability Evaluation</strong>Prior art search, novelty assessment, commercial viability analysis</li>
+                    <li><strong>Patent Drafting</strong>Claims and specifications written to withstand prosecution and litigation</li>
+                    <li><strong>Patent Filing &amp; Prosecution</strong>Direct filing in India, coordinated global filing through our associate network</li>
+                    <li><strong>Portfolio Strategy</strong>Multi-patent planning for product lines and technology roadmaps</li>
+                </ul></div>
+                <div class="service-column fade-in"><h3>Trademark Services</h3><ul>
+                    <li><strong>Trademark Search &amp; Clearance</strong>Comprehensive search and risk assessment</li>
+                    <li><strong>Application &amp; Filing</strong>Application drafting and filing across jurisdictions</li>
+                    <li><strong>Opposition &amp; Proceedings</strong>Opposition and cancellation proceedings</li>
+                    <li><strong>Portfolio Management</strong>Ongoing trademark portfolio maintenance</li>
+                </ul></div>
+                <div class="service-column fade-in"><h3>IP Consulting</h3><ul>
+                    <li><strong>Freedom-to-Operate Analysis</strong>Assess potential infringement risks before product launch</li>
+                    <li><strong>Licensing Strategy</strong>IP licensing and monetization planning</li>
+                    <li><strong>IP Due Diligence</strong>IP assessment for investments and acquisitions</li>
+                    <li><strong>Inventor Training</strong>Disclosure management and invention harvesting</li>
+                </ul></div>
+                <div class="service-column fade-in"><h3>IP Compliance</h3><ul>
+                    <li><strong>Foreign Filing Licence (FFL)</strong>Mandatory approval from the Controller of Patents under Section 39 before filing abroad</li>
+                    <li><strong>Patent Renewals</strong>Tracking and filing renewal fees across India and global jurisdictions</li>
+                    <li><strong>Working of Patents - Form 27</strong>Statements of working as required under Section 146 of the Patents Act</li>
+                </ul></div>
             </div>
         </div>
     </section>
@@ -323,7 +353,7 @@
         <div class="section-container">
             <div class="insights-header fade-in">
                 <h2 class="section-title">Insights &amp; Updates</h2>
-                <p class="insights-intro">Practical notes on patent strategy, filing updates, and IP trends that matter to builders.</p>
+                <p class="insights-intro">Click any article to read. Practical notes on patent strategy, filing updates, and IP trends.</p>
             </div>
             <div class="insights-grid" id="insightsGrid"></div>
         </div>
@@ -342,8 +372,11 @@
                     <div class="form-group"><label>Subject *</label>
                         <select id="subject" required>
                             <option value="">Select a subject</option>
-                            <option>Patent Inquiry</option><option>Trademark Inquiry</option>
-                            <option>IP Compliance</option><option>General Consultation</option><option>Other</option>
+                            <option>Patent Inquiry</option>
+                            <option>Trademark Inquiry</option>
+                            <option>IP Compliance</option>
+                            <option>General Consultation</option>
+                            <option>Other</option>
                         </select>
                     </div>
                     <div class="form-group"><label>Message *</label><textarea id="message" rows="5" required></textarea></div>
@@ -367,6 +400,14 @@
 
     <script src="articles.js"></script>
     <script>
+
+        /* ── Accordion toggle ── */
+        function toggleArticle(card) {
+            const isOpen = card.classList.contains('open');
+            document.querySelectorAll('.insight-card.open').forEach(c => c.classList.remove('open'));
+            if (!isOpen) card.classList.add('open');
+        }
+
         /* ── Render articles ── */
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((e, i) => {
@@ -379,27 +420,38 @@
 
         function renderArticles() {
             const grid = document.getElementById('insightsGrid');
-            if (!grid || typeof ARTICLES === 'undefined') return;
+            if (!grid) return;
             grid.innerHTML = ARTICLES.map(a => `
                 <article class="insight-card fade-in">
-                    <div class="card-meta">
-                        <span class="card-category">${a.category}</span>
-                        <span class="card-date">${a.date}</span>
+                    <div class="card-header" onclick="toggleArticle(this.closest('.insight-card'))">
+                        <div class="card-header-left">
+                            <div class="card-meta">
+                                <span class="card-category">${a.category}</span>
+                                <span class="card-date">${a.date}</span>
+                            </div>
+                            <div class="card-title">${a.title}</div>
+                        </div>
+                        <svg class="card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
                     </div>
-                    <h3>${a.title}</h3>
-                    ${a.intro ? `<p class="article-intro">${a.intro}</p>` : ''}
-                    ${(a.points||[]).map(pt => `<p class="article-point"><strong>${pt.label}:</strong> ${pt.text}</p>`).join('')}
-                    ${a.closing ? `<p class="article-closing">${a.closing}</p>` : ''}
+                    <div class="card-body">
+                        <div class="card-body-inner">
+                            <div class="article-divider"></div>
+                            ${a.intro ? `<p class="article-intro">${a.intro}</p>` : ''}
+                            ${(a.points||[]).map(pt => `<p class="article-point"><strong>${pt.label}:</strong> ${pt.text}</p>`).join('')}
+                            ${a.closing ? `<p class="article-closing">${a.closing}</p>` : ''}
+                        </div>
+                    </div>
                 </article>`).join('');
             grid.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
         }
 
-        /* ── Scroll helpers ── */
+        /* ── Nav helpers ── */
         function goTo(id) {
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
-        /* ── Navbar + bottom nav state ── */
         const navbar = document.getElementById('navbar');
         const sections = ['home','about','services','expertise','insights','contact'];
 
@@ -420,7 +472,7 @@
         /* ── Contact form ── */
         function handleSubmit(e) {
             e.preventDefault();
-            const n = document.getElementById('name').value;
+            const n  = document.getElementById('name').value;
             const em = document.getElementById('email').value;
             const co = document.getElementById('company').value;
             const su = document.getElementById('subject').value;
