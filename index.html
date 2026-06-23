@@ -447,16 +447,27 @@
         let activeCategory = 'All';
         let visibleCount = PAGE_SIZE;
 
+        /* Articles with a future "publish" date stay hidden until that date,
+           then appear automatically (checked against the visitor's clock). */
+        function liveArticles() {
+            const today = new Date(); today.setHours(23, 59, 59, 999);
+            return (typeof ARTICLES !== 'undefined' ? ARTICLES : []).filter(a => {
+                if (!a.publish) return true;
+                const d = new Date(a.publish + 'T00:00:00');
+                return isNaN(d) ? true : d <= today;
+            });
+        }
+
         function getCategories() {
             const cats = [];
-            (typeof ARTICLES !== 'undefined' ? ARTICLES : []).forEach(a => {
+            liveArticles().forEach(a => {
                 if (a.category && !cats.includes(a.category)) cats.push(a.category);
             });
             return ['All', ...cats];
         }
 
         function getFiltered() {
-            const all = (typeof ARTICLES !== 'undefined' ? ARTICLES : []);
+            const all = liveArticles();
             return activeCategory === 'All' ? all : all.filter(a => a.category === activeCategory);
         }
 
