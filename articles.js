@@ -1,6 +1,57 @@
 const ARTICLES = [
   {
     category: "Patent Strategy",
+    date: "July 2026",
+    publish: "2026-07-14",
+    title: "Your Patent Application Was Refused or Abandoned - What Are Your Options",
+    intro: "A setback at the patent office is not always the end of the road. Whether your application was refused after a hearing or lapsed because a deadline was missed, the right next step depends on exactly what happened - and several of the options are time-barred, so acting quickly matters.",
+    points: [
+      { label: "First, identify what actually happened", text: "There is a real difference between an application refused by the Controller under Section 15, one deemed abandoned under Section 21 (a missed deadline, such as no FER response), and one still alive with objections you can answer. The remedy is different for each, so the order you received is the starting point." },
+      { label: "If objections are still open", text: "If you are still within the FER response window - six months from the report, extendable by three - the application is alive. Respond on the merits, amend the claims within the original scope, and request a hearing. Nothing is lost yet." },
+      { label: "Amend to overcome the objection", text: "Many refusals turn on claim scope. Amending claims to distinguish clearly over the cited prior art, while keeping commercially meaningful coverage, can convert a likely refusal into a grant - provided the amendment stays within the original disclosure as Section 59 requires." },
+      { label: "File a divisional application - Section 16", text: "If your application contains more than one distinct invention, or you want to keep pursuing subject matter the examiner objected to, a divisional application can preserve that subject matter and retain the original priority date. It must be filed while the parent application is still pending." },
+      { label: "Appeal a refusal to the High Court", text: "A refusal under Section 15 can be appealed under Section 117A. Since the IPAB was abolished in 2021, these appeals are now filed before the High Court, and must be brought within three months of the Controller's order." },
+      { label: "Deemed abandonment is the hardest to undo", text: "If the application lapsed for a missed deadline, recovery is limited. A Rule 138 request to extend or condone delay may be possible in narrow circumstances if filed in time, but there is no general right to revive - which is exactly why deadline tracking matters." },
+      { label: "Learn from the file for the next filing", text: "Where revival is not viable, the examiner's reasoning is still valuable. It informs a stronger fresh application, where novelty has not already been lost, or a better-drafted related filing." }
+    ],
+    closing: "If you have received a refusal or an abandonment notice, the clock is usually running. We assess the order, identify which remedies are still open, and act within the deadline - whether that means a response, a divisional, or an appeal."
+  },
+  {
+    category: "Patent Strategy",
+    date: "July 2026",
+    publish: "2026-07-07",
+    title: "What Can and Cannot Be Patented in India - The Section 3 Exclusions Explained",
+    intro: "Even a novel, inventive idea can be refused if it falls into a category the law excludes from patentability. Section 3 of the Patents Act lists what is 'not an invention' in India, and knowing these exclusions before you file saves time, money, and disappointment.",
+    points: [
+      { label: "The starting point", text: "To be patentable, an invention must be novel, involve an inventive step, and be capable of industrial application - and it must not fall within the exclusions of Section 3 (or Section 4, which bars atomic energy inventions). Section 3 is where a large share of applications stumble." },
+      { label: "Discoveries and natural substances - 3(c)", text: "You cannot patent the mere discovery of a scientific principle, the formulation of an abstract theory, or the discovery of any living thing or non-living substance occurring in nature. Finding something that already exists is not, by itself, an invention." },
+      { label: "New forms of known substances - 3(d)", text: "A new form of a known substance is not patentable unless it shows enhanced therapeutic efficacy. Central to pharmaceutical patenting, this provision is designed to prevent 'evergreening' of existing drugs through trivial modifications." },
+      { label: "Methods of medical treatment - 3(i)", text: "Methods of treating humans or animals - medical, surgical, curative, diagnostic, therapeutic - are excluded. Devices, compositions, and products used in treatment can be patentable; the method of treatment itself cannot." },
+      { label: "Software and business methods - 3(k)", text: "Computer programmes per se, algorithms, mathematical methods, and business methods are excluded. As covered in our Section 3(k) article, software-related inventions can still be patented when framed around a genuine technical effect rather than the program or algorithm alone." },
+      { label: "Mental acts, games, and presentation of information - 3(m) and 3(n)", text: "A mere scheme, rule, or method of performing a mental act or playing a game, and the mere presentation of information, are not patentable. Many app and interface ideas run into these provisions." },
+      { label: "Plants, animals, agriculture, and traditional knowledge - 3(h), 3(j), 3(p)", text: "Methods of agriculture or horticulture, plants and animals other than micro-organisms (including essentially biological processes), and inventions that are in effect traditional knowledge, are all excluded." }
+    ],
+    closing: "Most Section 3 refusals are foreseeable. We assess these exclusions at the evaluation stage and, where an idea sits near a boundary like 3(d) or 3(k), frame the application to give it the best chance - or tell you honestly if it cannot be patented."
+  },
+  {
+    category: "Filing Updates",
+    date: "June 2026",
+    publish: "2026-06-30",
+    title: "How to Respond to a First Examination Report (FER) in India",
+    intro: "The First Examination Report is where most patent applications are won or lost. It is the patent office's formal list of objections, and your response, filed within a strict deadline, decides whether the application moves toward grant. Here is how the process works and how to respond well.",
+    points: [
+      { label: "What the FER is", text: "After you file a Request for Examination, the application is assigned to an examiner who issues the First Examination Report. It sets out objections - lack of novelty or inventive step, Section 3 exclusions, clarity and sufficiency of disclosure, and formal requirements - against the prior art the examiner has cited." },
+      { label: "The deadline is strict", text: "You have six months from the date the FER is issued to put the application in order for grant, extendable by a further three months. The extension must be requested, with the fee paid, before the period lapses. Miss it and the application is treated as abandoned under Section 21, with very limited recovery." },
+      { label: "Sort the objections into two buckets", text: "Objections are either substantive (novelty, inventive step, Section 3) or formal (claim format, drawings, definitions, missing documents). Formal objections are usually straightforward to fix; substantive ones require argument, amendment, or both." },
+      { label: "Amend within the original scope", text: "You may amend the claims to overcome prior art, but Section 59 only permits amendments that stay within the scope of the original disclosure - no new matter. Narrowing claims to distinguish over a cited reference is the most common move, and it must be done carefully to preserve commercially useful coverage." },
+      { label: "Argue novelty and inventive step on the record", text: "For each cited reference, explain why the claimed invention is new and non-obvious - what technical feature is missing from the prior art and what technical effect it produces. Vague assertions rarely persuade; specific, feature-by-feature distinctions do." },
+      { label: "Use the hearing", text: "If objections remain after the written response, the Controller offers a hearing. Treat it as a genuine opportunity, not a formality - a focused oral submission and, where useful, further claim amendments afterwards can carry an application to grant." },
+      { label: "Why response quality decides the outcome", text: "The FER response is the single most consequential document in prosecution. A rushed or generic reply can surrender claim scope or the application itself; a well-reasoned one preserves the broadest defensible protection." }
+    ],
+    closing: "We prepare FER responses as a strategic exercise - mapping each objection, amending to keep commercial scope, and arguing the technical case - and we track every deadline so nothing lapses."
+  },
+  {
+    category: "Patent Strategy",
     date: "June 2026",
     title: "AI Prior Art Search vs Traditional Keyword Search - What Actually Changed",
     intro: "Prior-art search is where AI has made the most immediate difference to patent work. The shift from keyword matching to semantic, meaning-based search is real and worth understanding - but it changes how you search, not whether you still need to think.",
