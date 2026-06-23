@@ -129,6 +129,16 @@
         .insights-intro { color: var(--text-mid); margin-top: 14px; max-width: 460px; }
         .insights-grid { display: flex; flex-direction: column; gap: 12px; }
 
+        /* INSIGHTS - FILTER + PAGINATION */
+        .insights-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+        .filter-btn { font-family: 'DM Sans', sans-serif; font-size: 0.76rem; font-weight: 400; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-mid); background: transparent; border: 1px solid rgba(0,0,0,0.12); padding: 8px 16px; border-radius: 2px; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+        .filter-btn:hover { border-color: var(--teal); color: var(--teal); }
+        .filter-btn.active { background: var(--teal); border-color: var(--teal); color: white; }
+        .insights-count { font-size: 0.8rem; color: var(--text-light); margin-bottom: 18px; letter-spacing: 0.02em; }
+        .load-more-wrap { display: flex; justify-content: center; margin-top: 30px; }
+        .btn-load-more { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); background: transparent; border: 1px solid var(--teal); padding: 13px 30px; border-radius: 2px; cursor: pointer; transition: background 0.25s, color 0.25s; }
+        .btn-load-more:hover { background: var(--teal); color: white; }
+
         .insight-card { background: var(--parchment); border-radius: 2px; border-left: 3px solid transparent; transition: border-color 0.3s, box-shadow 0.3s; overflow: hidden; }
         .insight-card.open { border-left-color: var(--teal); box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
 
@@ -366,7 +376,12 @@
                 <h2 class="section-title">Insights &amp; Updates</h2>
                 <p class="insights-intro">Click any article to read. Practical notes on patent strategy, filing updates, and IP trends.</p>
             </div>
+            <div class="insights-filters fade-in" id="insightsFilters"></div>
+            <p class="insights-count" id="insightsCount"></p>
             <div class="insights-grid" id="insightsGrid"></div>
+            <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
+                <button class="btn-load-more" onclick="loadMore()">Load more articles</button>
+            </div>
         </div>
     </section>
 
@@ -413,7 +428,7 @@
             if (!isOpen) card.classList.add('open');
         }
 
-        /* ── Render articles ── */
+        /* ── Fade-in observer ── */
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((e, i) => {
                 if (e.isIntersecting) {
@@ -423,10 +438,54 @@
             });
         }, { threshold: 0.1 });
 
+        /* ── Insights: filter + pagination ── */
+        const PAGE_SIZE = 6;
+        let activeCategory = 'All';
+        let visibleCount = PAGE_SIZE;
+
+        function getCategories() {
+            const cats = [];
+            (typeof ARTICLES !== 'undefined' ? ARTICLES : []).forEach(a => {
+                if (a.category && !cats.includes(a.category)) cats.push(a.category);
+            });
+            return ['All', ...cats];
+        }
+
+        function getFiltered() {
+            const all = (typeof ARTICLES !== 'undefined' ? ARTICLES : []);
+            return activeCategory === 'All' ? all : all.filter(a => a.category === activeCategory);
+        }
+
+        function renderFilters() {
+            const bar = document.getElementById('insightsFilters');
+            if (!bar) return;
+            bar.innerHTML = getCategories().map(cat => {
+                const safe = cat.replace(/"/g, '&quot;');
+                const isActive = cat === activeCategory ? ' active' : '';
+                return `<button class="filter-btn${isActive}" data-cat="${safe}" onclick="setCategory(this.dataset.cat)">${cat}</button>`;
+            }).join('');
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            visibleCount = PAGE_SIZE;
+            renderFilters();
+            renderArticles();
+        }
+
+        function loadMore() {
+            visibleCount += PAGE_SIZE;
+            renderArticles();
+        }
+
+        /* ── Render articles ── */
         function renderArticles() {
             const grid = document.getElementById('insightsGrid');
             if (!grid) return;
-            grid.innerHTML = ARTICLES.map(a => `
+            const filtered = getFiltered();
+            const shown = filtered.slice(0, visibleCount);
+
+            grid.innerHTML = shown.map(a => `
                 <article class="insight-card fade-in">
                     <div class="card-header" onclick="toggleArticle(this.closest('.insight-card'))">
                         <div class="card-header-left">
@@ -449,6 +508,17 @@
                         </div>
                     </div>
                 </article>`).join('');
+
+            const countEl = document.getElementById('insightsCount');
+            if (countEl) {
+                countEl.textContent = filtered.length
+                    ? `Showing ${shown.length} of ${filtered.length} article${filtered.length === 1 ? '' : 's'}`
+                    : 'No articles in this category yet.';
+            }
+
+            const moreWrap = document.getElementById('loadMoreWrap');
+            if (moreWrap) moreWrap.style.display = filtered.length > visibleCount ? 'flex' : 'none';
+
             grid.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
         }
 
@@ -476,6 +546,7 @@
 
         /* ── Init ── */
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        renderFilters();
         renderArticles();
         updateNav();
     </script>
