@@ -1,5 +1,6 @@
+// Patvizry Insights - article data. Single source of truth for build.js and the homepage.
 const ARTICLES = [
-      {
+  {
     category: "Filing Updates",
     date: "September 2026",
     publish: "2026-09-22",
@@ -125,13 +126,14 @@ const ARTICLES = [
     ],
     closing: "We treat a free search as the first filter, not the final word - our patentability evaluations go further, and we will tell you plainly if what you have found already exists."
   },
+  {
     category: "Patent Strategy",
     date: "July 2026",
     publish: "2026-07-14",
     title: "Your Patent Application Was Refused or Abandoned - What Are Your Options",
     intro: "A setback at the patent office is not always the end of the road. Whether your application was refused after a hearing or lapsed because a deadline was missed, the right next step depends on exactly what happened - and several of the options are time-barred, so acting quickly matters.",
     points: [
-      { label: "First, identify what actually happened", text: "There is a real difference between an application refused by the Controller under Section 15, one deemed abandoned under Section 21 (a missed deadline, such as no FER response), and one still alive with objections you can answer. The remedy is different for each, so the order you received is the starting point." },
+      { label: "First, identify what actually happened", text: "There is a real difference between an application refused by the Controller under Section 15 (a substantive decision), one deemed abandoned under Section 21 (a missed deadline, such as no FER response), and one still alive with objections you can answer. The remedy is different for each, so the order you received is the starting point." },
       { label: "If objections are still open", text: "If you are still within the FER response window - six months from the report, extendable by three - the application is alive. Respond on the merits, amend the claims within the original scope, and request a hearing. Nothing is lost yet." },
       { label: "Amend to overcome the objection", text: "Many refusals turn on claim scope. Amending claims to distinguish clearly over the cited prior art, while keeping commercially meaningful coverage, can convert a likely refusal into a grant - provided the amendment stays within the original disclosure as Section 59 requires." },
       { label: "File a divisional application - Section 16", text: "If your application contains more than one distinct invention, or you want to keep pursuing subject matter the examiner objected to, a divisional application can preserve that subject matter and retain the original priority date. It must be filed while the parent application is still pending." },
