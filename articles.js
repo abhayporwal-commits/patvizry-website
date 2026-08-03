@@ -1,5 +1,131 @@
 const ARTICLES = [
   {
+    {
+    category: "Filing Updates",
+    date: "September 2026",
+    publish: "2026-09-22",
+    title: "Trademark Classes Explained - Which Class Does Your Business Need",
+    intro: "Every trademark application is filed against one or more classes, and getting this wrong is one of the most common - and costly - mistakes founders make. Here is how the classification system works and how to choose the classes that actually protect your business.",
+    points: [
+      { label: "The Nice Classification system", text: "India follows the international Nice Classification, which divides all goods and services into 45 classes - classes 1 to 34 cover goods, and 35 to 45 cover services. A trademark application is filed per class, and protection only extends to the classes you file in." },
+      { label: "Common classes for tech and startups", text: "Class 9 covers software and downloadable applications. Class 42 covers SaaS, cloud computing, and technology services. Class 35 covers advertising, business management, and retail or online marketplace services. Class 41 covers education and training. Most software or platform businesses need at least Class 9 and Class 42, and often Class 35 as well." },
+      { label: "Why the wrong class leaves gaps", text: "A mark registered only in Class 9 does not stop a competitor from using a similar name for consulting services in Class 35 - even if it is the same brand in the public's mind. Filing in too narrow a set of classes can let others operate under your name just outside your registered scope." },
+      { label: "Cost is a real trade-off", text: "Official fees and professional fees are charged per class, so filing in every class 'just in case' is rarely efficient. The right approach is to map your current business and its realistic near-term expansion, then file in the classes that matter - not all 45." },
+      { label: "Search before you file, per class", text: "A clearance search should be run against the specific classes you intend to file in, since conflicts are assessed class by class. A name can be free in one class and blocked in another." },
+      { label: "Classes can be added later", text: "If your business expands into new goods or services, you can file a fresh application in the new class - but that new filing gets a new priority date. It does not retroactively extend your original registration." }
+    ],
+    closing: "We help map the classes that fit your actual business model, not a generic template, and run the clearance search against those specific classes before you file."
+  },
+  {
+    category: "Filing Updates",
+    date: "September 2026",
+    publish: "2026-09-15",
+    title: "How an Indian Startup Files a Patent in the US",
+    intro: "Once an Indian startup wants US protection, there are two established routes in - and a compliance step at home that has to happen first. Here is how Indian applicants typically file in the United States.",
+    points: [
+      { label: "Clear the Foreign Filing Licence first", text: "If the invention was conceived or developed in India, an FFL under Section 39 (or the deemed permission that follows six weeks after an Indian filing) must be in place before you file in the US. This applies regardless of which US route you use." },
+      { label: "Route one - the Paris Convention", text: "File a US application directly, claiming priority from your Indian application, within 12 months of the Indian filing date. This preserves your original priority date and is often used when the US is a clear, near-term target market." },
+      { label: "Route two - PCT national phase", text: "If you filed a PCT international application, you can enter the US national phase before the USPTO, generally by 30 months from your priority date. This is the common route when the US is one of several markets you are still evaluating." },
+      { label: "You need a US-licensed practitioner", text: "Indian patent agents are not authorised to practise before the USPTO. Prosecution - responding to office actions, arguing patentability, attending interviews - must be handled by a US-registered patent attorney or agent, coordinated alongside your Indian counsel." },
+      { label: "USPTO fees scale with entity size", text: "The USPTO offers reduced fees for small and micro entities, similar in spirit to India's startup and small-entity fee structure, but with its own eligibility criteria. Confirming your entity size before filing affects the fee schedule for the life of the application." },
+      { label: "Expect a longer runway than in India", text: "Time to a first office action varies by technology area and USPTO backlog, commonly well over a year from filing. Budget and plan prosecution timelines accordingly, and keep US and Indian filing strategies coordinated rather than run as separate efforts." }
+    ],
+    closing: "We coordinate US filings - Paris Convention or PCT national phase - through our associate network, so your Indian and US strategies move together instead of drifting apart."
+  },
+  {
+    category: "Patent Strategy",
+    date: "September 2026",
+    publish: "2026-09-08",
+    title: "Patent vs Copyright vs Trademark vs Design - The One-Page IP Map",
+    intro: "Founders often default to 'we need a patent' when a different right - or a combination - actually fits better. Each form of IP protects a different thing, lasts for a different length of time, and is obtained through a different process. Here is the map.",
+    points: [
+      { label: "Patents protect how something works", text: "A patent protects a new, inventive, and industrially applicable way of doing something - a mechanism, a process, a technical system. It requires examination, lasts 20 years from filing, and demands full public disclosure of how the invention works in exchange for exclusivity." },
+      { label: "Trademarks protect how you are identified", text: "A trademark protects the names, logos, and marks that distinguish your goods or services in the market. It can last indefinitely, renewed every ten years, for as long as you keep using and renewing it - there is no fixed expiry built into the right itself." },
+      { label: "Copyright protects original expression", text: "Copyright protects the specific expression of an idea - source code, written content, designs, images, and similar works - automatically on creation, with no registration required to exist (though registration helps with enforcement). In India, copyright in most works lasts for the author's lifetime plus 60 years." },
+      { label: "Design registration protects appearance", text: "A registered design protects the visual, ornamental appearance of an article - its shape, pattern, or configuration - not how it functions. It is faster and cheaper to obtain than a patent, but the protection is narrower and shorter, typically up to 15 years in India." },
+      { label: "Trade secrets protect what you keep confidential", text: "Anything you can keep secret and that gives you a competitive edge - formulas, processes, internal data - can be protected as a trade secret indefinitely, but only for as long as confidentiality actually holds, and only through contracts and access controls rather than registration." },
+      { label: "Most products need more than one", text: "A single product can involve a patented mechanism, a registered design for its appearance, copyright in its software and manuals, and a trademark for its brand name - four different rights, each doing a different job, often all at once." }
+    ],
+    closing: "We help founders map a product against all five forms of protection at once, so nothing is left unprotected simply because it did not fit the first category considered."
+  },
+  {
+    category: "Filing Updates",
+    date: "September 2026",
+    publish: "2026-09-01",
+    title: "How to Track Your Patent Application Status on the IPO Portal",
+    intro: "Once a patent application is filed, its status changes many times before grant - and missing a status change can mean missing a deadline. Here is how to track an Indian application through the Patent Office's public systems.",
+    points: [
+      { label: "Where to check", text: "The Indian Patent Office publishes application status through its public search and status tools, accessible without a login, using your application number, publication number, or applicant name." },
+      { label: "What the status field tells you", text: "Status entries typically show whether an application is published, under examination, has an FER issued, is awaiting a response, is listed for a hearing, has been granted, refused, or deemed withdrawn or abandoned. Each status implies a different next action and, often, a different deadline." },
+      { label: "Cross-check against the file history", text: "The status is a summary - the underlying file, including office actions and responses, gives the full picture. For any status that looks unfamiliar or unexpected, the correspondence on file is what actually explains it." },
+      { label: "Set a recurring check, not a one-time look", text: "Status can change without an active prompt reaching you immediately. A quarterly or monthly check, timed against your known FER and renewal windows, catches changes before they become urgent." },
+      { label: "Portfolio tracking matters more as you scale", text: "Checking one application manually is manageable. Checking status across ten or fifty applications, each with its own deadlines, is where a docketing system - not memory - has to take over." }
+    ],
+    closing: "We track status across every application in a client's portfolio as a standing part of our service, so a status change is caught immediately rather than discovered at the next renewal."
+  },
+  {
+    category: "Patent Strategy",
+    date: "August 2026",
+    publish: "2026-08-25",
+    title: "Who Owns IP Created by Employees vs Contractors in India",
+    intro: "Assuming your company automatically owns everything built by your team is one of the most common and expensive assumptions a founder makes. Indian law treats patents and copyright very differently here, and contractors are treated differently again. Here is how ownership actually falls, by default.",
+    points: [
+      { label: "Patents follow the inventor, not the employer", text: "The Patents Act names the inventor as the first owner of an invention. Unlike some other jurisdictions, it contains no automatic 'work made for hire' rule for patents - so an employee's invention does not automatically vest in the employer purely because they were employed." },
+      { label: "Courts do recognise a 'hired to invent' principle", text: "Where an employee is specifically hired or assigned to invent - an R&D engineer working on the very problem their invention solves - courts have generally treated the resulting invention as belonging to the employer, following a master-and-servant logic. This is not written into the statute; it comes from case law, and it is not a substitute for a clear written assignment." },
+      { label: "Independent contractors default to owning their own work", text: "A contractor engaged without an assignment clause generally retains rights to what they invent, even if you paid for the work and it was built specifically for you. This is the gap that catches founders most often - work commissioned from a freelance developer or consultant does not automatically become company property." },
+      { label: "Copyright works differently", text: "Section 17 of the Copyright Act does give the employer automatic first ownership of works created by an employee in the course of employment, absent an agreement to the contrary. For contractors, ownership only passes to the commissioning party if the work falls into specific statutory categories and there is a written agreement providing for it." },
+      { label: "The practical fix is the same either way", text: "Because patent law does not provide the same automatic protection copyright does, every employment contract and every contractor or consulting agreement should include an explicit IP assignment clause, covering both inventions and copyrightable work, signed before the work begins." }
+    ],
+    closing: "We review employment and contractor agreements for IP assignment gaps as part of startup IP readiness work - the fix is a clause, but only if it is in place before the invention exists, not after."
+  },
+  {
+    category: "Patent Strategy",
+    date: "August 2026",
+    publish: "2026-08-18",
+    title: "How Long Does It Actually Take to Get a Patent in India",
+    intro: "There is no single answer, because the timeline depends on your filing choices at every stage - but there is a realistic range, and knowing where the time actually goes helps you plan rather than guess.",
+    points: [
+      { label: "Filing to publication - 18 months, or sooner", text: "Applications are published 18 months after the priority date by default, but early publication can be requested via Form 9, which can shave a year or more off the front end if you need visibility sooner." },
+      { label: "Publication to examination request", text: "Examination is not automatic. You must file a Request for Examination within 31 months of the priority date. Filing this request early, rather than waiting until the deadline, moves your place in the examination queue forward." },
+      { label: "Examination request to the FER", text: "This is the least predictable stage - depending on the technology area and the examiner's workload, the First Examination Report can arrive anywhere from several months to a couple of years after the request is filed." },
+      { label: "FER to grant or refusal", text: "You have six months to respond, extendable by three. If objections remain, a hearing follows. In practice, most applications take one or more rounds of response and, often, a hearing, before the matter is resolved - adding further months to a year or more." },
+      { label: "Realistic totals", text: "Under ordinary examination, two to four years from filing to grant is a realistic range for most applications, and longer is not unusual in high-volume technology areas. This is not a fixed rule - it reflects current Patent Office workload as much as anything about your specific application." },
+      { label: "The expedited route changes the math", text: "Under Rule 24C, eligible applicants - startups, small entities, female applicants, and certain others - can compress this substantially, with some applications granted within a year of the request for examination." }
+    ],
+    closing: "We set realistic timeline expectations at the filing stage based on current Patent Office pace, and use expedited examination where eligibility and commercial timing make it worthwhile."
+  },
+  {
+    category: "Patent Strategy",
+    date: "August 2026",
+    publish: "2026-08-11",
+    title: "Someone Is Copying Your Patented Product - Your Enforcement Options",
+    intro: "A granted patent is only as strong as your willingness and ability to enforce it. If you believe someone is making, using, or selling your patented invention without permission, here is how enforcement actually works in India.",
+    points: [
+      { label: "Confirm infringement before you act", text: "Compare the competing product or process against your granted claims, feature by feature - not against your product, against the claims as written. Infringement is a claims-based question, and a premature accusation without this analysis can backfire." },
+      { label: "Where a suit is filed", text: "Under Section 104 of the Patents Act, an infringement suit cannot be filed below a District Court. Depending on the value of the claim, it may instead be filed before a High Court with original jurisdiction - Delhi, Bombay, Calcutta, Madras, and Himachal Pradesh currently exercise this jurisdiction." },
+      { label: "Interim relief is often the real objective", text: "Courts apply a three-factor test for an interim injunction: a prima facie case, the balance of convenience, and irreparable harm if relief is refused. A strong interim injunction can stop the infringing activity within weeks, well before the case is finally decided - often the most commercially meaningful outcome." },
+      { label: "Final remedies under Section 108", text: "At the conclusion of a successful suit, remedies include a permanent injunction, delivery up or destruction of infringing goods, and either damages or an account of the infringer's profits - the patentee must choose one, not both." },
+      { label: "A cease-and-desist often comes first", text: "Many disputes are resolved, or at least clarified, through a formal notice before litigation - it signals seriousness, opens a negotiation path, and creates a record if the matter does proceed to court." },
+      { label: "Weigh the litigation commitment", text: "Patent litigation in India can take years to fully resolve and requires sustained investment. A licensing conversation, a settlement, or a narrower commercial resolution is sometimes the more efficient outcome than court from the outset - though the credible threat of enforcement is often what brings the other side to that conversation." }
+    ],
+    closing: "We assess infringement claims against granted claim language, and work with litigation counsel on strategy - from a cease-and-desist through to interim injunction proceedings - so enforcement decisions are made on the strength of the case, not just frustration with a competitor."
+  },
+  {
+    category: "Patent Strategy",
+    date: "August 2026",
+    publish: "2026-08-04",
+    title: "How to Check if Your Idea Is Already Patented - A Free Patent Search Guide",
+    intro: "Before spending money on drafting or filing, a basic search can tell you whether your idea already exists in the public record. Here is how to run a preliminary search yourself - and why it is not a substitute for a professional patentability opinion.",
+    points: [
+      { label: "Start with InPASS", text: "InPASS - the Indian Patent Advanced Search System - is the Patent Office's own free, public database of published and granted Indian applications. No registration is required. It supports quick and advanced search, Boolean operators, and searches by applicant name, application number, or publication number." },
+      { label: "Check the legal status, not just the text", text: "InPASS links through to the E-Register, which shows whether a patent is still in force, has lapsed, or has been revoked. A patent that has lapsed for non-payment of renewal fees may no longer block you, even if it was granted." },
+      { label: "Search beyond India", text: "An idea can be blocked by prior art published anywhere in the world, not only in India. WIPO's Patentscope and Google Patents both offer free searches across international patent databases and are useful for a broader first pass." },
+      { label: "Search concepts, not just your exact wording", text: "Prior art rarely uses the same words you would choose. Search using the underlying technical concept, synonyms, and the problem being solved, not just your product's working title or one specific phrase." },
+      { label: "Know what a free search cannot tell you", text: "A DIY search can surface obvious, closely related prior art - but it will not reliably assess inventive step, will not catch unpublished applications still in their 18-month confidentiality window, and will not give you a defensible legal opinion on patentability." },
+      { label: "When to bring in a professional search", text: "Once your own search does not turn up an obvious blocker, a professional patentability search - covering unpublished pending applications where possible, structured claim-level analysis, and a reasoned view on inventive step - is what actually tells you whether filing is worth the investment." }
+    ],
+    closing: "We treat a free search as the first filter, not the final word - our patentability evaluations go further, and we will tell you plainly if what you have found already exists."
+  },
     category: "Patent Strategy",
     date: "July 2026",
     publish: "2026-07-14",
