@@ -552,6 +552,16 @@
         renderFilters();
         renderArticles();
         updateNav();
+
+        /* Scheduled articles are gated client-side by date. A tab left open
+           across the publish moment, or a cached load, would otherwise show
+           stale content until the next manual reload - so re-check periodically
+           and whenever the tab regains focus, and pick up new/changed articles
+           without a full page refresh. */
+        setInterval(() => { renderFilters(); renderArticles(); }, 60000);
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) { renderFilters(); renderArticles(); }
+        });
     </script>
 </body>
 </html>
