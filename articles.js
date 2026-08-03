@@ -1,6 +1,5 @@
 const ARTICLES = [
-  {
-    {
+      {
     category: "Filing Updates",
     date: "September 2026",
     publish: "2026-09-22",
